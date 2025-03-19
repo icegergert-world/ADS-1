@@ -3,9 +3,9 @@
 #include "alg.h"
 
 bool checkPrime(uint64_t value) {
-  if (value <= 1) 
+  if (value <= 1)
     return false;
-  if (value == 2 || value == 3) 
+  if (value == 2 || value == 3)
     return true;
   if (value % 2 == 0 || value % 3 == 0)
     return false;
@@ -28,7 +28,6 @@ uint64_t nPrime(uint64_t n) {
     }
     Number++;
   }
-
   return Number - 1;
 }
 
