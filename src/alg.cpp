@@ -9,7 +9,7 @@ bool checkPrime(uint64_t value) {
     return true;
   if (value % 2 == 0 || value % 3 == 0)
     return false;
-
+  
   for (uint64_t i = 5; i * i <= value; i += 6) {
     if (value % i == 0 || value % (i + 2) == 0) {
       return false;
@@ -48,7 +48,7 @@ uint64_t sumPrime(uint64_t hbound) {
         sum += i;
       }
     }
-    return sum;
+  return sum;
 }
 
 uint64_t twinPrimes(uint64_t lbound, uint64_t hbound) {
