@@ -3,15 +3,18 @@
 #include "alg.h"
 
 bool checkPrime(uint64_t value) {
-  if (value <= 1)
+  uint64_t i;
+  if (value <= 1) {
     return false;
-  if (value == 2 || value == 3)
+  }
+  if (value == 2) {
     return true;
-  if (value % 2 == 0 || value % 3 == 0)
+  }
+  if (value % 2 == 0) {
     return false;
-
-  for (uint64_t i = 5; i * i <= value; i += 6) {
-    if (value % i == 0 || value % (i + 2) == 0) {
+  }
+  for (i = 3; i * i <= value; i = i + 2) {
+    if (value % i == 0) {
       return false;
     }
   }
@@ -19,41 +22,46 @@ bool checkPrime(uint64_t value) {
 }
 
 uint64_t nPrime(uint64_t n) {
-  uint64_t Count = 0;
-  uint64_t Number = 2;
-
-  while (Count < n) {
-    if (checkPrime(Number)) {
-      Count++;
+  uint64_t num = 2;
+  uint64_t count = 0;
+  while (true) {
+    if (checkPrime(num)) {
+      count++;
     }
-    Number++;
+    if (count == n) {
+      return num;
+    }
+    num++;
   }
-  return Number - 1;
 }
 
 uint64_t nextPrime(uint64_t value) {
-  if (value <= 1) return 2;
-
-  uint64_t nextnum = value + 1;
-  while (!checkPrime(nextnum)) {
-    nextnum++;
+  while (true) {
+    value++;
+    if (checkPrime(value)) {
+      return value;
+    }
   }
-  return nextnum;
 }
 
 uint64_t sumPrime(uint64_t hbound) {
-  uint64_t sum = 0;
-    for (uint64_t i = 2; i < hbound; i++) {
-      if (checkPrime(i)) {
-        sum += i;
-      }
+  uint64_t summa = 0;
+  uint64_t i;
+  if (hbound > 2) {
+    summa = summa + 2;
+  }
+  for (i = 3; i < hbound; i = i + 2) {
+    if (checkPrime(i)) {
+      summa = summa + i;
     }
-  return sum;
+  }
+  return summa;
 }
 
 uint64_t twinPrimes(uint64_t lbound, uint64_t hbound) {
   uint64_t count = 0;
-  for (uint64_t i = lbound; i < hbound - 2; i++) {
+  uint64_t i;
+  for (i = lbound; i < hbound-2; i++) {
     if (checkPrime(i) && checkPrime(i + 2)) {
       count++;
     }
